@@ -1,0 +1,63 @@
+Synopsis
+---------------
+A Django plugin/wrapper for validate.js
+
+
+Restrictions
+---------------
+Currently only supports 'required' validation.
+
+
+Installation
+---------------
+
+Grap the source and ideally your own copy of validate.js
+
+https://github.com/txm/Django-ValidateJS
+http://rickharrison.github.com/validate.js/
+http://docs.jquery.com/Downloading_jQuery
+
+
+Setup
+---------------
+Edit settings.py
+
+To get started or testing you can 'borrow' the js asset and inline css.
+In reality you will want to point to your own validate.js resource.  
+You will also want to apply your own css.  The form inputs have a class 'error' added.
+
+VALIDATEJS = {
+  'steal_js': True,
+  'default_css': True,
+}
+
+Add 'validatejs' to INSTALLED_APPS
+
+INSTALLED_APPS = (
+  ...
+  'validatejs',
+)
+
+
+Usage
+---------------
+
+In your view import the method and execute, then render.
+
+  from validatejs.methods import *
+
+  validatejs = script(form, {'form_name': 'example_form'})
+
+  return render_to_response('some_view.html', { 'form': form, 'validatejs' : validatejs })
+
+
+TODO
+---------------
+1. Move the JS to a template
+2. Add more validation types
+3. Investigate RequestContext or a more background/automatic method of validation
+
+
+Contact
+---------------
+"Andrew McGregor" <andy@txm.net>
